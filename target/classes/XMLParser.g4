@@ -29,12 +29,17 @@
 /** XML parser derived from ANTLR v4 ref guide book example */
 parser grammar XMLParser;
 
-options { tokenVocab=XMLLexer; }
+options {tokenVocab=XMLLexer;}
 
 document    :   prolog? misc* element misc*;
+program: prolog? programOpen variables* programBodyOpen content programBodyClose programClose;
+programOpen: misc* OPEN_PROGRAM_TAG misc*;
+variables: (misc* element misc*)+; //TODO: variables grammar here
+programBodyOpen: misc* OPEN_PROGRAM_BODY_TAG misc*;
+programClose: misc* CLOSE_PROGRAM_TAG misc*;
+programBodyClose: CLOSE_PROGRAM_BODY_TAG;
 
 prolog      :   XMLDeclOpen attribute* SPECIAL_CLOSE ;
-
 content     :   chardata?
                 ((element | reference | CDATA | PI | COMMENT) chardata?)* ;
 

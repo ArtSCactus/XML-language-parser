@@ -45,6 +45,11 @@ SEA_WS      :   (' '|'\t'|'\r'? '\n')+ ;
 OPEN        :   '<'                     -> pushMode(INSIDE) ;
 XMLDeclOpen :   '<?xml' S               -> pushMode(INSIDE) ;
 SPECIAL_OPEN:   '<?' Name               -> more, pushMode(PROC_INSTR) ;
+OPEN_PROGRAM_TAG :  '<xmlScript>';
+OPEN_PROGRAM_BODY_TAG: '<ScriptBody>';
+CLOSE_PROGRAM_TAG: '</xmlScript>';
+CLOSE_PROGRAM_BODY_TAG: '</ScriptBody>';
+
 
 TEXT        :   ~[<&]+ ;        // match any 16 bit char other than < and &
 
@@ -91,3 +96,4 @@ mode PROC_INSTR;
 
 PI          :   '?>'                    -> popMode ; // close <?...?>
 IGNORE      :   .                       -> more ;
+// ->pushMode(INSIDE);

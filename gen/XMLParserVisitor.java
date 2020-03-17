@@ -16,6 +16,42 @@ public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDocument(XMLParser.DocumentContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link XMLParser#program}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgram(XMLParser.ProgramContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#programOpen}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgramOpen(XMLParser.ProgramOpenContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#variables}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariables(XMLParser.VariablesContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#programBodyOpen}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgramBodyOpen(XMLParser.ProgramBodyOpenContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#programClose}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgramClose(XMLParser.ProgramCloseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#programBodyClose}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgramBodyClose(XMLParser.ProgramBodyCloseContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link XMLParser#prolog}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

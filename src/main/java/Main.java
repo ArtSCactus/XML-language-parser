@@ -14,7 +14,7 @@ public class Main {
         XMLLexer lexer = new XMLLexer(CharStreams.fromFileName("books.xml"));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         XMLParser parser = new XMLParser(tokens);
-        ParseTree tree = parser.document();
+        ParseTree tree = parser.program();
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(new Walker(), tree);
     }

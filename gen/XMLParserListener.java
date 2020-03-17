@@ -17,6 +17,66 @@ public interface XMLParserListener extends ParseTreeListener {
 	 */
 	void exitDocument(XMLParser.DocumentContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link XMLParser#program}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgram(XMLParser.ProgramContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#program}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgram(XMLParser.ProgramContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#programOpen}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgramOpen(XMLParser.ProgramOpenContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#programOpen}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgramOpen(XMLParser.ProgramOpenContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#variables}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariables(XMLParser.VariablesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#variables}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariables(XMLParser.VariablesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#programBodyOpen}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgramBodyOpen(XMLParser.ProgramBodyOpenContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#programBodyOpen}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgramBodyOpen(XMLParser.ProgramBodyOpenContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#programClose}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgramClose(XMLParser.ProgramCloseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#programClose}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgramClose(XMLParser.ProgramCloseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#programBodyClose}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgramBodyClose(XMLParser.ProgramBodyCloseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#programBodyClose}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgramBodyClose(XMLParser.ProgramBodyCloseContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link XMLParser#prolog}.
 	 * @param ctx the parse tree
 	 */

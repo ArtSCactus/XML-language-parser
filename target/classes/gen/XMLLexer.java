@@ -1,4 +1,4 @@
-// Generated from D:/Projects/XML-language-parser/src/main/resources\XMLLexer.g4 by ANTLR 4.8
+// Generated from D:/Projects/XML-language-parser/target/classes\XMLLexer.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
