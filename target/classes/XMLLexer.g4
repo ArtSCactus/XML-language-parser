@@ -45,17 +45,23 @@ SEA_WS      :   (' '|'\t'|'\r'? '\n')+ ;
 OPEN        :   '<'                     -> pushMode(INSIDE) ;
 XMLDeclOpen :   '<?xml' S               -> pushMode(INSIDE) ;
 SPECIAL_OPEN:   '<?' Name               -> more, pushMode(PROC_INSTR) ;
-OPEN_PROGRAM_TAG :  '<xmlScript>';
-OPEN_PROGRAM_BODY_TAG: '<ScriptBody>';
-CLOSE_PROGRAM_TAG: '</xmlScript>';
-CLOSE_PROGRAM_BODY_TAG: '</ScriptBody>';
+OPEN_SCRIPT_TAG :  '<XMLScript>';
+CLOSE_SCRIPT_TAG: '</XMLScript>';
+OPEN_SCRIPT_BODY_TAG: '<body>';
+CLOSE_SCRIPT_BODY_TAG: '</body>';
+OPEN_CONSTANTS_TAG: '<constants>';
+CLOSE_CONSTATNS_TAG: '</constants';
+OPEN_ALGORITHM_TAG: '<algorithm>';
+CLOSE_ALGORITHM_TAG: '</algorithm>';
 
 
 TEXT        :   ~[<&]+ ;        // match any 16 bit char other than < and &
 
 // ----------------- Everything INSIDE of a tag ---------------------
 mode INSIDE;
-
+TAG_DECLARATION: 'tag';
+TAG_NAME_ATTR: 'name';
+TAG_VALUE_ATTR: 'value';
 CLOSE       :   '>'                     -> popMode ;
 SPECIAL_CLOSE:  '?>'                    -> popMode ; // close <?xml...?>
 SLASH_CLOSE :   '/>'                    -> popMode ;
@@ -96,4 +102,3 @@ mode PROC_INSTR;
 
 PI          :   '?>'                    -> popMode ; // close <?...?>
 IGNORE      :   .                       -> more ;
-// ->pushMode(INSIDE);

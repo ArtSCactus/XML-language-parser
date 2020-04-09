@@ -16,49 +16,77 @@ public class XMLParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDocument(XMLParser.DocumentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTag_name_attr(XMLParser.Tag_name_attrContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitProgram(XMLParser.ProgramContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTag_value_attr(XMLParser.Tag_value_attrContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitProgramOpen(XMLParser.ProgramOpenContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSimple_tag(XMLParser.Simple_tagContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVariables(XMLParser.VariablesContext ctx) { return visitChildren(ctx); }
+	@Override public T visitComplex_tag(XMLParser.Complex_tagContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitProgramBodyOpen(XMLParser.ProgramBodyOpenContext ctx) { return visitChildren(ctx); }
+	@Override public T visitComplex_tag_close(XMLParser.Complex_tag_closeContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitProgramClose(XMLParser.ProgramCloseContext ctx) { return visitChildren(ctx); }
+	@Override public T visitScript(XMLParser.ScriptContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitProgramBodyClose(XMLParser.ProgramBodyCloseContext ctx) { return visitChildren(ctx); }
+	@Override public T visitScriptOpen(XMLParser.ScriptOpenContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitScriptClose(XMLParser.ScriptCloseContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitScriptBodyOpen(XMLParser.ScriptBodyOpenContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitScriptBodyClose(XMLParser.ScriptBodyCloseContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitConstants(XMLParser.ConstantsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

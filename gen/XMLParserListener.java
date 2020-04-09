@@ -7,75 +7,115 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface XMLParserListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#document}.
+	 * Enter a parse tree produced by {@link XMLParser#tag_name_attr}.
 	 * @param ctx the parse tree
 	 */
-	void enterDocument(XMLParser.DocumentContext ctx);
+	void enterTag_name_attr(XMLParser.Tag_name_attrContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#document}.
+	 * Exit a parse tree produced by {@link XMLParser#tag_name_attr}.
 	 * @param ctx the parse tree
 	 */
-	void exitDocument(XMLParser.DocumentContext ctx);
+	void exitTag_name_attr(XMLParser.Tag_name_attrContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#program}.
+	 * Enter a parse tree produced by {@link XMLParser#tag_value_attr}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgram(XMLParser.ProgramContext ctx);
+	void enterTag_value_attr(XMLParser.Tag_value_attrContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#program}.
+	 * Exit a parse tree produced by {@link XMLParser#tag_value_attr}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgram(XMLParser.ProgramContext ctx);
+	void exitTag_value_attr(XMLParser.Tag_value_attrContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#programOpen}.
+	 * Enter a parse tree produced by {@link XMLParser#simple_tag}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgramOpen(XMLParser.ProgramOpenContext ctx);
+	void enterSimple_tag(XMLParser.Simple_tagContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#programOpen}.
+	 * Exit a parse tree produced by {@link XMLParser#simple_tag}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgramOpen(XMLParser.ProgramOpenContext ctx);
+	void exitSimple_tag(XMLParser.Simple_tagContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#variables}.
+	 * Enter a parse tree produced by {@link XMLParser#complex_tag}.
 	 * @param ctx the parse tree
 	 */
-	void enterVariables(XMLParser.VariablesContext ctx);
+	void enterComplex_tag(XMLParser.Complex_tagContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#variables}.
+	 * Exit a parse tree produced by {@link XMLParser#complex_tag}.
 	 * @param ctx the parse tree
 	 */
-	void exitVariables(XMLParser.VariablesContext ctx);
+	void exitComplex_tag(XMLParser.Complex_tagContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#programBodyOpen}.
+	 * Enter a parse tree produced by {@link XMLParser#complex_tag_close}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgramBodyOpen(XMLParser.ProgramBodyOpenContext ctx);
+	void enterComplex_tag_close(XMLParser.Complex_tag_closeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#programBodyOpen}.
+	 * Exit a parse tree produced by {@link XMLParser#complex_tag_close}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgramBodyOpen(XMLParser.ProgramBodyOpenContext ctx);
+	void exitComplex_tag_close(XMLParser.Complex_tag_closeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#programClose}.
+	 * Enter a parse tree produced by {@link XMLParser#script}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgramClose(XMLParser.ProgramCloseContext ctx);
+	void enterScript(XMLParser.ScriptContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#programClose}.
+	 * Exit a parse tree produced by {@link XMLParser#script}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgramClose(XMLParser.ProgramCloseContext ctx);
+	void exitScript(XMLParser.ScriptContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#programBodyClose}.
+	 * Enter a parse tree produced by {@link XMLParser#scriptOpen}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgramBodyClose(XMLParser.ProgramBodyCloseContext ctx);
+	void enterScriptOpen(XMLParser.ScriptOpenContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#programBodyClose}.
+	 * Exit a parse tree produced by {@link XMLParser#scriptOpen}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgramBodyClose(XMLParser.ProgramBodyCloseContext ctx);
+	void exitScriptOpen(XMLParser.ScriptOpenContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#scriptClose}.
+	 * @param ctx the parse tree
+	 */
+	void enterScriptClose(XMLParser.ScriptCloseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#scriptClose}.
+	 * @param ctx the parse tree
+	 */
+	void exitScriptClose(XMLParser.ScriptCloseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#scriptBodyOpen}.
+	 * @param ctx the parse tree
+	 */
+	void enterScriptBodyOpen(XMLParser.ScriptBodyOpenContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#scriptBodyOpen}.
+	 * @param ctx the parse tree
+	 */
+	void exitScriptBodyOpen(XMLParser.ScriptBodyOpenContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#scriptBodyClose}.
+	 * @param ctx the parse tree
+	 */
+	void enterScriptBodyClose(XMLParser.ScriptBodyCloseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#scriptBodyClose}.
+	 * @param ctx the parse tree
+	 */
+	void exitScriptBodyClose(XMLParser.ScriptBodyCloseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#constants}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstants(XMLParser.ConstantsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#constants}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstants(XMLParser.ConstantsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XMLParser#prolog}.
 	 * @param ctx the parse tree

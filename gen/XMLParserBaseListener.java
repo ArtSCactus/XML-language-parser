@@ -15,85 +15,133 @@ public class XMLParserBaseListener implements XMLParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDocument(XMLParser.DocumentContext ctx) { }
+	@Override public void enterTag_name_attr(XMLParser.Tag_name_attrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDocument(XMLParser.DocumentContext ctx) { }
+	@Override public void exitTag_name_attr(XMLParser.Tag_name_attrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgram(XMLParser.ProgramContext ctx) { }
+	@Override public void enterTag_value_attr(XMLParser.Tag_value_attrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgram(XMLParser.ProgramContext ctx) { }
+	@Override public void exitTag_value_attr(XMLParser.Tag_value_attrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgramOpen(XMLParser.ProgramOpenContext ctx) { }
+	@Override public void enterSimple_tag(XMLParser.Simple_tagContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgramOpen(XMLParser.ProgramOpenContext ctx) { }
+	@Override public void exitSimple_tag(XMLParser.Simple_tagContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariables(XMLParser.VariablesContext ctx) { }
+	@Override public void enterComplex_tag(XMLParser.Complex_tagContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariables(XMLParser.VariablesContext ctx) { }
+	@Override public void exitComplex_tag(XMLParser.Complex_tagContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgramBodyOpen(XMLParser.ProgramBodyOpenContext ctx) { }
+	@Override public void enterComplex_tag_close(XMLParser.Complex_tag_closeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgramBodyOpen(XMLParser.ProgramBodyOpenContext ctx) { }
+	@Override public void exitComplex_tag_close(XMLParser.Complex_tag_closeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgramClose(XMLParser.ProgramCloseContext ctx) { }
+	@Override public void enterScript(XMLParser.ScriptContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgramClose(XMLParser.ProgramCloseContext ctx) { }
+	@Override public void exitScript(XMLParser.ScriptContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgramBodyClose(XMLParser.ProgramBodyCloseContext ctx) { }
+	@Override public void enterScriptOpen(XMLParser.ScriptOpenContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgramBodyClose(XMLParser.ProgramBodyCloseContext ctx) { }
+	@Override public void exitScriptOpen(XMLParser.ScriptOpenContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterScriptClose(XMLParser.ScriptCloseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitScriptClose(XMLParser.ScriptCloseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterScriptBodyOpen(XMLParser.ScriptBodyOpenContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitScriptBodyOpen(XMLParser.ScriptBodyOpenContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterScriptBodyClose(XMLParser.ScriptBodyCloseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitScriptBodyClose(XMLParser.ScriptBodyCloseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterConstants(XMLParser.ConstantsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConstants(XMLParser.ConstantsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

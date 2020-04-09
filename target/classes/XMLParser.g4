@@ -26,18 +26,23 @@
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-/** XML parser derived from ANTLR v4 ref guide book example */
+/** XML customBaseListener derived from ANTLR v4 ref guide book example */
 parser grammar XMLParser;
 
 options {tokenVocab=XMLLexer;}
 
-document    :   prolog? misc* element misc*;
-program: prolog? programOpen variables* programBodyOpen content programBodyClose programClose;
-programOpen: misc* OPEN_PROGRAM_TAG misc*;
-variables: (misc* element misc*)+; //TODO: variables grammar here
-programBodyOpen: misc* OPEN_PROGRAM_BODY_TAG misc*;
-programClose: misc* CLOSE_PROGRAM_TAG misc*;
-programBodyClose: CLOSE_PROGRAM_BODY_TAG;
+
+tag_name_attr: TAG_NAME_ATTR EQUALS STRING;
+tag_value_attr: TAG_VALUE_ATTR EQUALS STRING;
+simple_tag: misc* OPEN TAG_DECLARATION tag_name_attr tag_value_attr attribute* SLASH_CLOSE misc*;
+complex_tag: misc* OPEN TAG_DECLARATION tag_name_attr tag_value_attr attribute* CLOSE simple_tag* complex_tag_close misc*;
+complex_tag_close: misc* OPEN '/' TAG_DECLARATION CLOSE misc*;
+script: prolog? misc* scriptOpen constants scriptBodyOpen scriptBodyClose scriptClose;
+scriptOpen: misc* OPEN_SCRIPT_TAG misc*;
+scriptClose: misc* CLOSE_SCRIPT_TAG misc*;
+scriptBodyOpen: misc* OPEN_SCRIPT_BODY_TAG misc*;
+scriptBodyClose: misc* CLOSE_SCRIPT_BODY_TAG misc*;
+constants: OPEN_CONSTANTS_TAG (complex_tag | simple_tag)* CLOSE_CONSTANTS_TAG;
 
 prolog      :   XMLDeclOpen attribute* SPECIAL_CLOSE ;
 content     :   chardata?

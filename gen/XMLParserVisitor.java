@@ -10,47 +10,71 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link XMLParser#document}.
+	 * Visit a parse tree produced by {@link XMLParser#tag_name_attr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDocument(XMLParser.DocumentContext ctx);
+	T visitTag_name_attr(XMLParser.Tag_name_attrContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link XMLParser#program}.
+	 * Visit a parse tree produced by {@link XMLParser#tag_value_attr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgram(XMLParser.ProgramContext ctx);
+	T visitTag_value_attr(XMLParser.Tag_value_attrContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link XMLParser#programOpen}.
+	 * Visit a parse tree produced by {@link XMLParser#simple_tag}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgramOpen(XMLParser.ProgramOpenContext ctx);
+	T visitSimple_tag(XMLParser.Simple_tagContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link XMLParser#variables}.
+	 * Visit a parse tree produced by {@link XMLParser#complex_tag}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVariables(XMLParser.VariablesContext ctx);
+	T visitComplex_tag(XMLParser.Complex_tagContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link XMLParser#programBodyOpen}.
+	 * Visit a parse tree produced by {@link XMLParser#complex_tag_close}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgramBodyOpen(XMLParser.ProgramBodyOpenContext ctx);
+	T visitComplex_tag_close(XMLParser.Complex_tag_closeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link XMLParser#programClose}.
+	 * Visit a parse tree produced by {@link XMLParser#script}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgramClose(XMLParser.ProgramCloseContext ctx);
+	T visitScript(XMLParser.ScriptContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link XMLParser#programBodyClose}.
+	 * Visit a parse tree produced by {@link XMLParser#scriptOpen}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgramBodyClose(XMLParser.ProgramBodyCloseContext ctx);
+	T visitScriptOpen(XMLParser.ScriptOpenContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#scriptClose}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScriptClose(XMLParser.ScriptCloseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#scriptBodyOpen}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScriptBodyOpen(XMLParser.ScriptBodyOpenContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#scriptBodyClose}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScriptBodyClose(XMLParser.ScriptBodyCloseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#constants}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConstants(XMLParser.ConstantsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link XMLParser#prolog}.
 	 * @param ctx the parse tree
