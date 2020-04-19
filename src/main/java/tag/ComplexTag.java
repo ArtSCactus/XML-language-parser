@@ -98,10 +98,12 @@ public class ComplexTag implements ConstantTag {
 
     @Override
     public String toString() {
-        return "CustomTag{" +
+        return "ComplexTag{" +
                 "name='" + name + '\'' +
                 ", value='" + value + '\'' +
                 ", childes=" + childes +
+                ", attributes=" + attributes +
+                ", type=" + type +
                 '}';
     }
 }

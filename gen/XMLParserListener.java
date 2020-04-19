@@ -7,6 +7,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface XMLParserListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link XMLParser#tag}.
+	 * @param ctx the parse tree
+	 */
+	void enterTag(XMLParser.TagContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#tag}.
+	 * @param ctx the parse tree
+	 */
+	void exitTag(XMLParser.TagContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link XMLParser#tag_name_attr}.
 	 * @param ctx the parse tree
 	 */
@@ -56,6 +66,36 @@ public interface XMLParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitComplex_tag_close(XMLParser.Complex_tag_closeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#conditionOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionOperator(XMLParser.ConditionOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#conditionOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionOperator(XMLParser.ConditionOperatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#cycleOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterCycleOperator(XMLParser.CycleOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#cycleOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitCycleOperator(XMLParser.CycleOperatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#code}.
+	 * @param ctx the parse tree
+	 */
+	void enterCode(XMLParser.CodeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#code}.
+	 * @param ctx the parse tree
+	 */
+	void exitCode(XMLParser.CodeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XMLParser#script}.
 	 * @param ctx the parse tree
@@ -127,25 +167,15 @@ public interface XMLParserListener extends ParseTreeListener {
 	 */
 	void exitProlog(XMLParser.PrologContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#content}.
+	 * Enter a parse tree produced by {@link XMLParser#operatorExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterContent(XMLParser.ContentContext ctx);
+	void enterOperatorExpression(XMLParser.OperatorExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#content}.
+	 * Exit a parse tree produced by {@link XMLParser#operatorExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitContent(XMLParser.ContentContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link XMLParser#element}.
-	 * @param ctx the parse tree
-	 */
-	void enterElement(XMLParser.ElementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link XMLParser#element}.
-	 * @param ctx the parse tree
-	 */
-	void exitElement(XMLParser.ElementContext ctx);
+	void exitOperatorExpression(XMLParser.OperatorExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XMLParser#reference}.
 	 * @param ctx the parse tree

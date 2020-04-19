@@ -31,26 +31,30 @@ parser grammar XMLParser;
 
 options {tokenVocab=XMLLexer;}
 
-
+tag: simple_tag|complex_tag;
 tag_name_attr: TAG_NAME_ATTR EQUALS STRING;
 tag_value_attr: TAG_VALUE_ATTR EQUALS STRING;
+
 simple_tag: misc* OPEN TAG_DECLARATION tag_name_attr tag_value_attr attribute* SLASH_CLOSE misc*;
-complex_tag: misc* OPEN TAG_DECLARATION tag_name_attr tag_value_attr attribute* CLOSE simple_tag* complex_tag_close misc*;
-complex_tag_close: misc* OPEN '/' TAG_DECLARATION CLOSE misc*;
-script: prolog? misc* scriptOpen constants scriptBodyOpen scriptBodyClose scriptClose;
+
+complex_tag: misc* OPEN TAG_DECLARATION tag_name_attr tag_value_attr attribute* CLOSE tag* complex_tag_close misc*;
+complex_tag_close: misc* OPEN '/' TAG_DECLARATION CLOSE misc* ;
+
+conditionOperator: IF misc* BRACKET_OPEN  BRACKET_CLOSE misc* OPEN_BLOCK misc* CLOSE_BLOCK misc* ELSE misc* OPEN_BLOCK misc* CLOSE_BLOCK*;
+cycleOperator: misc* FOR misc* BRACKET_OPEN BRACKET_CLOSE misc* OPEN_BLOCK misc* CLOSE_BLOCK misc*;
+
+code: misc* (conditionOperator|cycleOperator)* misc* ;
+
+script: prolog? misc* scriptOpen constants scriptBodyOpen scriptBodyClose code scriptClose;
+
 scriptOpen: misc* OPEN_SCRIPT_TAG misc*;
 scriptClose: misc* CLOSE_SCRIPT_TAG misc*;
 scriptBodyOpen: misc* OPEN_SCRIPT_BODY_TAG misc*;
 scriptBodyClose: misc* CLOSE_SCRIPT_BODY_TAG misc*;
 constants: OPEN_CONSTANTS_TAG (complex_tag | simple_tag)* CLOSE_CONSTANTS_TAG;
-
 prolog      :   XMLDeclOpen attribute* SPECIAL_CLOSE ;
-content     :   chardata?
-                ((element | reference | CDATA | PI | COMMENT) chardata?)* ;
+//cycleOperatorExpression: (WORD misc* IN misc* WORD| NUMBER);
 
-element     :   '<' Name attribute* '>' content '<' '/' Name '>'
-            |   '<' Name attribute* '/>'
-            ;
 
 reference   :   EntityRef | CharRef ;
 
@@ -61,4 +65,4 @@ attribute   :   Name '=' STRING ; // Our STRING is AttValue in spec
  */
 chardata    :   TEXT | SEA_WS ;
 
-misc        :   COMMENT | PI | SEA_WS ;
+misc        :   COMMENT | SEA_WS ;

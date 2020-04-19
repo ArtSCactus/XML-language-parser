@@ -50,18 +50,31 @@ CLOSE_SCRIPT_TAG: '</XMLScript>';
 OPEN_SCRIPT_BODY_TAG: '<body>';
 CLOSE_SCRIPT_BODY_TAG: '</body>';
 OPEN_CONSTANTS_TAG: '<constants>';
-CLOSE_CONSTATNS_TAG: '</constants';
+CLOSE_CONSTANTS_TAG: '</constants>';
 OPEN_ALGORITHM_TAG: '<algorithm>';
 CLOSE_ALGORITHM_TAG: '</algorithm>';
+BRACKET_OPEN: '(';
+BRACKET_CLOSE: ')';
+OPEN_BLOCK: '{';
+CLOSE_BLOCK: '}';
+IF: 'if';
+//FOR: 'for'->pushMode(INSIDE_CYCLE_EXP);
+mode ARGUMENTS;
+WORD: ( 'a'..'z' | 'A'..'Z'|'_')+;
+SPACE: '\s'+;
 
 
-TEXT        :   ~[<&]+ ;        // match any 16 bit char other than < and &
+
+
+//TEXT        :   ~[<&]+ ;        // match any 16 bit char other than < and &
 
 // ----------------- Everything INSIDE of a tag ---------------------
 mode INSIDE;
 TAG_DECLARATION: 'tag';
 TAG_NAME_ATTR: 'name';
 TAG_VALUE_ATTR: 'value';
+ELSE: 'else';
+
 CLOSE       :   '>'                     -> popMode ;
 SPECIAL_CLOSE:  '?>'                    -> popMode ; // close <?xml...?>
 SLASH_CLOSE :   '/>'                    -> popMode ;
@@ -102,3 +115,4 @@ mode PROC_INSTR;
 
 PI          :   '?>'                    -> popMode ; // close <?...?>
 IGNORE      :   .                       -> more ;
+

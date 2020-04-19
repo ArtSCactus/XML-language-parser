@@ -3,10 +3,14 @@
       <tag name="TrueName" value="trueValue" attr="someAttr">
          <tag name="one" value="one" attr="additionalAttr"/>
          <tag name="two" value="two" attr="two"/>
+      <tag name="InsideTag" value="trueValue" attr="someAttr">
+         <tag name="insideOne" value="one" attr="additionalAttr"/>
+         <tag name="insideTwo" value="two" attr="two"/>
+      </tag>
       </tag>
    </constants>
 <body>
-
+   if{}
 </body>
 </XMLScript>
 

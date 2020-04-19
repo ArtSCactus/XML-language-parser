@@ -15,10 +15,13 @@ public class Main {
         XMLLexer lexer = new XMLLexer(CharStreams.fromFileName("books.xml"));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         XMLParser xmlParser = new XMLParser(tokens);
-        ParseTree tree = xmlParser.complex_tag();
+        ParseTree tree = xmlParser.script();
         ParseTreeWalker walker = new ParseTreeWalker();
         CustomBaseListener customBaseListener = new CustomBaseListener();
         walker.walk(customBaseListener, tree);
+        Visitor visitor = new Visitor();
+        visitor.visit(tree);
+        System.out.println(visitor.getConstants());
 
     }
 }

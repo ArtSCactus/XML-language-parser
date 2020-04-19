@@ -10,6 +10,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link XMLParser#tag}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTag(XMLParser.TagContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link XMLParser#tag_name_attr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -39,6 +45,24 @@ public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitComplex_tag_close(XMLParser.Complex_tag_closeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#conditionOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditionOperator(XMLParser.ConditionOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#cycleOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCycleOperator(XMLParser.CycleOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#code}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCode(XMLParser.CodeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link XMLParser#script}.
 	 * @param ctx the parse tree
@@ -82,17 +106,11 @@ public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProlog(XMLParser.PrologContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link XMLParser#content}.
+	 * Visit a parse tree produced by {@link XMLParser#operatorExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitContent(XMLParser.ContentContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link XMLParser#element}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitElement(XMLParser.ElementContext ctx);
+	T visitOperatorExpression(XMLParser.OperatorExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link XMLParser#reference}.
 	 * @param ctx the parse tree
