@@ -1,9 +1,11 @@
+import builder.DocumentConstructor;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
 
 /**
@@ -11,7 +13,7 @@ import java.io.IOException;
  * @version 1.0
  */
 public class Main {
-    public static void main (String[] args) throws IOException, ParserConfigurationException {
+    public static void main (String[] args) throws IOException, ParserConfigurationException, TransformerException {
         XMLLexer lexer = new XMLLexer(CharStreams.fromFileName("books.xml"));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         XMLParser xmlParser = new XMLParser(tokens);
@@ -21,7 +23,9 @@ public class Main {
         walker.walk(customBaseListener, tree);
         Visitor visitor = new Visitor();
         visitor.visit(tree);
-        System.out.println(visitor.getConstants());
+        DocumentConstructor documentConstructor = new DocumentConstructor();
+        documentConstructor.buildDocument(visitor.getConstants());
+       // System.out.println(visitor.getConstants());
 
     }
 }

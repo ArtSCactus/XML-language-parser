@@ -53,28 +53,83 @@ OPEN_CONSTANTS_TAG: '<constants>';
 CLOSE_CONSTANTS_TAG: '</constants>';
 OPEN_ALGORITHM_TAG: '<algorithm>';
 CLOSE_ALGORITHM_TAG: '</algorithm>';
-BRACKET_OPEN: '(';
-BRACKET_CLOSE: ')';
+BRACKET_OPEN: '(' -> pushMode(ARGUMENTS);
+IF: 'if' ->pushMode(CONDITION_OPERATOR);
+ELSE: 'else';//->pushMode(ELSE_CONDITION);
+TAG_VAR: 'tag' ->pushMode(TAG_VARIABLE_DECLARATION);
+DOCUMENT_VAR: 'doc' -> pushMode(DOCUMENT_VARIABLE_DECLARATION);
+ATTRIBUTE_VAR: 'attr' ->pushMode(ATTRIBUTE_VARIABLE);
+FUNCTION_WORD: 'function' -> pushMode(FUNCTION);
+FUNCTION_WORD_SHORT: 'func' -> pushMode(FUNCTION);
+APPEND_OPERATOR_DECLARATION: 'append'->pushMode(APPEND_OPERATOR_MODE);
+COMMON_OPEN_BLOCK: '{';
+COMMON_CLOSE_BLOCK: '}';
+
+mode DOCUMENT_VARIABLE_DECLARATION;
+DOCUMENT: 'DOC';
+DOCUMENT_WORD     :   [A-z0-9]+;
+TABULATION_AND_SPACES: [ \t\r\n]+->skip;
+VARIABLE_EQUALS: '=';
+DOC_END_OF_DECLARATION: ';'->popMode;
+
+mode TAG_VARIABLE_DECLARATION;
+EMPTY_TAG : 'TAG';
+TAG_WORD     :   [A-z0-9]+;
+TAG_TABULATION_AND_SPACES: [ \t\r\n]+->skip;
+TAG_VARIABLE_EQUALS: '=';
+TAG_END_OF_DECLARATION: ';'->popMode;
+
+mode ATTRIBUTE_VARIABLE;
+ATTRIBUTE: 'ATTR';
+ATTRIBUTE_WORD     :   [A-z0-9]+;
+ATTRIBUTE_DELIMITER: ':';
+ATTRIBUTE_TABULATION_AND_SPACES: [ \t\r\n]+->skip;
+ATTRIBUTE_EQUALS: '=';
+ATTRIBUTE_END_OF_DECLARATION: ';'->popMode;
+
+mode FUNCTION;
+FUNC_NAME: [A-z0-9]+;
+FUNC_OPEN_CODE_BLOCK: '{';
+FUNC_IGNORING_SYMBOLS_SPACES: [ \t\r\n]+->skip;
+FUNC_CLOSE_CODE_BLOCK: '}'->popMode;
+
+mode APPEND_OPERATOR_MODE;
+APPEND_OPERATOR_IGNORING_SYMBOLS_SPACES: [ \t\r\n]+->skip;
+APPEND_OPERATOR_WORD: [A-z0-9]+;
+TO_SYMBOL: ':';
+END_OF_OPERATOR: ';'->popMode;
+
+mode CONDITION_OPERATOR;
+CONDITION_WORD: [A-z0-9]+;
+CONDITION_BRACKETS_OPEN: '(';
+CONDITION_OPERATOR_IGNORING_SYMBOLS_SPACES: [ \t\r\n]+->skip;
+CONDITION_BRACKETS_CLOSE: ')'->popMode;
+HAS_CONDITION: 'has';
+EQUALS_CONDITION: '==';
 OPEN_BLOCK: '{';
 CLOSE_BLOCK: '}';
-IF: 'if';
-//FOR: 'for'->pushMode(INSIDE_CYCLE_EXP);
+
+mode ELSE_CONDITION;
+ELSE_CONDITION_OPERATOR_IGNORING_SYMBOLS_SPACES: [ \t\r\n]+->skip;
+ELSE_OPEN_BLOCK: '{';
+ELSE_CLOSE_BLOCK: '}'->popMode;
+
+
+
 mode ARGUMENTS;
-WORD: ( 'a'..'z' | 'A'..'Z'|'_')+;
-SPACE: '\s'+;
+BRACKET_CLOSE: ')'->popMode;
+EXPRESSION_ARGUMENTS        :   ~[<&)]+;        // match any 16 bit char other than < and & and )
 
 
 
 
-//TEXT        :   ~[<&]+ ;        // match any 16 bit char other than < and &
+
 
 // ----------------- Everything INSIDE of a tag ---------------------
 mode INSIDE;
 TAG_DECLARATION: 'tag';
 TAG_NAME_ATTR: 'name';
 TAG_VALUE_ATTR: 'value';
-ELSE: 'else';
-
 CLOSE       :   '>'                     -> popMode ;
 SPECIAL_CLOSE:  '?>'                    -> popMode ; // close <?xml...?>
 SLASH_CLOSE :   '/>'                    -> popMode ;

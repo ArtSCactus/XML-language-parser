@@ -1,6 +1,7 @@
 package tag;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -8,11 +9,11 @@ import java.util.Objects;
  * @author ArtSCactus
  * @version 1.0
  */
-public class SimpleTag implements ConstantTag {
+public class SimpleTag implements Tag {
 private String name;
 private String value;
 private Map<String, String> attributes;
-private final TagType type;
+private  final TagType type;
 
     public SimpleTag(String name, String value, Map<String, String> attributes) {
         this.name = name;
@@ -26,6 +27,11 @@ private final TagType type;
         this.value = value;
         this.attributes = new HashMap<>();
         this.type = TagType.SIMPLE;
+    }
+
+    @Override
+    public List<Tag> getChildes() {
+        return null;
     }
 
     public void setAttributes(Map<String, String> attributes) {

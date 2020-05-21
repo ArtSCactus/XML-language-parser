@@ -46,17 +46,113 @@ public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComplex_tag_close(XMLParser.Complex_tag_closeContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link XMLParser#tagVariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTagVariable(XMLParser.TagVariableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#documentVariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDocumentVariable(XMLParser.DocumentVariableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#attrVariable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttrVariable(XMLParser.AttrVariableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#tagVariableName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTagVariableName(XMLParser.TagVariableNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#tagVariableValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTagVariableValue(XMLParser.TagVariableValueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#docVariableName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDocVariableName(XMLParser.DocVariableNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#docVariableValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDocVariableValue(XMLParser.DocVariableValueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#attrVariableValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttrVariableValue(XMLParser.AttrVariableValueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#attrName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttrName(XMLParser.AttrNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#attrValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttrValue(XMLParser.AttrValueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#appendOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAppendOperator(XMLParser.AppendOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#appendOperatorChildName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAppendOperatorChildName(XMLParser.AppendOperatorChildNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#appendOperatorParentName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAppendOperatorParentName(XMLParser.AppendOperatorParentNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#appendOperatorToWord}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAppendOperatorToWord(XMLParser.AppendOperatorToWordContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction(XMLParser.FunctionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link XMLParser#conditionOperator}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitConditionOperator(XMLParser.ConditionOperatorContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link XMLParser#cycleOperator}.
+	 * Visit a parse tree produced by {@link XMLParser#conditionType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCycleOperator(XMLParser.CycleOperatorContext ctx);
+	T visitConditionType(XMLParser.ConditionTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#elseCondition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseCondition(XMLParser.ElseConditionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link XMLParser#code}.
 	 * @param ctx the parse tree
@@ -105,12 +201,6 @@ public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitProlog(XMLParser.PrologContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link XMLParser#operatorExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOperatorExpression(XMLParser.OperatorExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link XMLParser#reference}.
 	 * @param ctx the parse tree

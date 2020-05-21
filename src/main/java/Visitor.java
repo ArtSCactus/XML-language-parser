@@ -1,8 +1,11 @@
 
+import builder.MainConstructor;
+import interpreter.VariableStorageImpl;
+import interpreter.VariablesStorage;
+import operator.Command;
+import operator.ConditionOperator;
 import org.antlr.v4.runtime.tree.ParseTree;
-import tag.ComplexTag;
-import tag.ConstantTag;
-import tag.SimpleTag;
+import tag.*;
 
 import java.util.*;
 
@@ -10,13 +13,66 @@ import java.util.*;
  * @author ArtSCactus
  * @version 1.0
  */
-public class Visitor extends XMLParserBaseVisitor<ConstantTag> {
+public class Visitor extends XMLParserBaseVisitor<Tag> {
     private Stack<ComplexTag> nestingStack;
-    private List<ConstantTag> constants;
+    private Stack<ConditionOperator> conditionOperatorsStack;
+    private List<Tag> constants;
+    private MainConstructor mainConstructor;
+    private VariablesStorage variablesStorage;
+
+    @Override
+    public Tag visitConstants(XMLParser.ConstantsContext ctx) {
+        variablesStorage = new VariableStorageImpl();
+        for (XMLParser.DocumentVariableContext doc :ctx.documentVariable()){
+            variablesStorage.addDocument(doc.docVariableName().DOCUMENT_WORD().getText(), new DefaultDocument(doc.docVariableValue().DOCUMENT_WORD().getText()));
+        }
+        for (XMLParser.TagVariableContext tag : ctx.tagVariable()){
+            variablesStorage.addTagVariable(tag.tagVariableName().TAG_WORD().getText(), new ComplexTag(tag.tagVariableName().TAG_WORD().getText()));
+        }
+        for (XMLParser.AttrVariableContext attr : ctx.attrVariable()){
+            variablesStorage.addAttribute(attr.ATTRIBUTE_WORD().getText(), new AttributeImpl(
+                    attr.attrVariableValue().attrName().ATTRIBUTE_WORD().getText(),
+                    attr.attrVariableValue().attrValue().ATTRIBUTE_WORD().getText()));
+        }
+        return super.visitConstants(ctx);
+    }
+
+    @Override
+    public Tag visitScript(XMLParser.ScriptContext ctx) {
+        return super.visitScript(ctx);
+    }
+
+    @Override
+    public Tag visitCode(XMLParser.CodeContext ctx) {
+        List<XMLParser.AppendOperatorContext> commands = ctx.appendOperator();
+        List<Command> parsedCommands = new ArrayList<>();
+        for (XMLParser.AppendOperatorContext curCtx : commands){
+          //  parsedCommands.add(new Append())
+        }
+        return super.visitCode(ctx);
+    }
+
+    @Override
+    public Tag visitConditionOperator(XMLParser.ConditionOperatorContext ctx) {
+        return super.visitConditionOperator(ctx);
+    }
+
+    @Override
+    public Tag visitTagVariable(XMLParser.TagVariableContext ctx) {
+        variablesStorage.addTagVariable(ctx.tagVariableName().TAG_WORD().getText(),
+                new ComplexTag(ctx.tagVariableValue().TAG_WORD().getText()));
+        return super.visitTagVariable(ctx);
+    }
+
+    @Override
+    public Tag visitAttrVariable(XMLParser.AttrVariableContext ctx) {
+        return super.visitAttrVariable(ctx);
+    }
 
     public Visitor(){
             this.nestingStack = new Stack<>();
             this.constants = new ArrayList<>();
+            mainConstructor = new MainConstructor();
     }
     /**
      * {@inheritDoc}
@@ -27,7 +83,7 @@ public class Visitor extends XMLParserBaseVisitor<ConstantTag> {
      * @param ctx
      */
     @Override
-    public ConstantTag visitSimple_tag(XMLParser.Simple_tagContext ctx) {
+    public Tag visitSimple_tag(XMLParser.Simple_tagContext ctx) {
         String name = ctx.tag_name_attr().STRING().getText().replaceAll("\"", "");
         String value = ctx.tag_value_attr().STRING().getText().replaceAll("\"", "");
         List<XMLParser.AttributeContext> attributeContexts = ctx.attribute();
@@ -35,7 +91,7 @@ public class Visitor extends XMLParserBaseVisitor<ConstantTag> {
         for (XMLParser.AttributeContext context : attributeContexts) {
             attributes.put(context.Name().getText().trim(), context.STRING().getText().replaceAll("\"", ""));
         }
-        ConstantTag simpleTag = new SimpleTag(name, value, attributes);
+        Tag simpleTag = new SimpleTag(name, value, attributes);
         if (nestingStack.isEmpty()){
             constants.add(simpleTag);
         } else {
@@ -53,9 +109,9 @@ public class Visitor extends XMLParserBaseVisitor<ConstantTag> {
      * @param ctx
      */
     @Override
-    public ConstantTag visitComplex_tag(XMLParser.Complex_tagContext ctx) {
+    public Tag visitComplex_tag(XMLParser.Complex_tagContext ctx) {
         List<XMLParser.TagContext> innerTags = ctx.tag();
-        List<ConstantTag> childs = new ArrayList<>();
+        List<Tag> childs = new ArrayList<>();
         String name = ctx.tag_name_attr().STRING().getText().replaceAll("\"", "");
         String value = ctx.tag_value_attr().STRING().getText().replaceAll("\"", "");
         List<XMLParser.AttributeContext> attributeContexts = ctx.attribute();
@@ -93,7 +149,7 @@ public class Visitor extends XMLParserBaseVisitor<ConstantTag> {
      * @param ctx
      */
     @Override
-    public ConstantTag visitComplex_tag_close(XMLParser.Complex_tag_closeContext ctx) {
+    public Tag visitComplex_tag_close(XMLParser.Complex_tag_closeContext ctx) {
         ComplexTag complexTag = nestingStack.pop();
         if (nestingStack.isEmpty()){
             constants.add(complexTag);
@@ -104,11 +160,18 @@ public class Visitor extends XMLParserBaseVisitor<ConstantTag> {
     }
 
     @Override
-    public ConstantTag visit(ParseTree tree) {
+    public Tag visit(ParseTree tree) {
         return super.visit(tree);
     }
 
-    public List<ConstantTag> getConstants(){
+    @Override
+    public Tag visitAppendOperator(XMLParser.AppendOperatorContext ctx) {
+        System.out.println("Append operator call. Args: "+ctx.appendOperatorParentName().APPEND_OPERATOR_WORD().getText()+" to "+
+                ctx.appendOperatorChildName().APPEND_OPERATOR_WORD().getText());
+        return super.visitAppendOperator(ctx);
+    }
+
+    public List<Tag> getConstants(){
         return constants;
     }
 

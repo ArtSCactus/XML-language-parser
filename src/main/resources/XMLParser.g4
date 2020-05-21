@@ -40,29 +40,45 @@ simple_tag: misc* OPEN TAG_DECLARATION tag_name_attr tag_value_attr attribute* S
 complex_tag: misc* OPEN TAG_DECLARATION tag_name_attr tag_value_attr attribute* CLOSE tag* complex_tag_close misc*;
 complex_tag_close: misc* OPEN '/' TAG_DECLARATION CLOSE misc* ;
 
-conditionOperator: IF misc* BRACKET_OPEN  BRACKET_CLOSE misc* OPEN_BLOCK misc* CLOSE_BLOCK misc* ELSE misc* OPEN_BLOCK misc* CLOSE_BLOCK*;
-cycleOperator: misc* FOR misc* BRACKET_OPEN BRACKET_CLOSE misc* OPEN_BLOCK misc* CLOSE_BLOCK misc*;
+tagVariable: misc* TAG_VAR tagVariableName TAG_VARIABLE_EQUALS (tagVariableValue|EMPTY_TAG) TAG_END_OF_DECLARATION misc*;
+documentVariable: misc* DOCUMENT_VAR docVariableName VARIABLE_EQUALS docVariableValue DOC_END_OF_DECLARATION misc*;
+attrVariable: misc* ATTRIBUTE_VAR ATTRIBUTE_WORD ATTRIBUTE_EQUALS attrVariableValue ATTRIBUTE_END_OF_DECLARATION misc*;
+tagVariableName: TAG_WORD;
+tagVariableValue: TAG_WORD;
+docVariableName: DOCUMENT_WORD;
+docVariableValue: DOCUMENT_WORD;
+attrVariableValue: attrName ATTRIBUTE_DELIMITER attrValue;
+attrName: ATTRIBUTE_WORD;
+attrValue: ATTRIBUTE_WORD;
 
-code: misc* (conditionOperator|cycleOperator)* misc* ;
+appendOperator: misc* APPEND_OPERATOR_DECLARATION appendOperatorChildName appendOperatorToWord appendOperatorParentName END_OF_OPERATOR;
+appendOperatorChildName: APPEND_OPERATOR_WORD;
+appendOperatorParentName: APPEND_OPERATOR_WORD;
+appendOperatorToWord: TO_SYMBOL;
 
-script: prolog? misc* scriptOpen constants scriptBodyOpen scriptBodyClose code scriptClose;
+function: misc* (FUNCTION_WORD|FUNCTION_WORD_SHORT) FUNC_NAME FUNC_OPEN_CODE_BLOCK code? FUNC_CLOSE_CODE_BLOCK misc*;
+
+conditionOperator: misc* IF misc* CONDITION_BRACKETS_OPEN misc* CONDITION_WORD conditionType CONDITION_WORD misc* CONDITION_BRACKETS_CLOSE misc* COMMON_OPEN_BLOCK code? COMMON_CLOSE_BLOCK misc* elseCondition?;
+conditionType: EQUALS_CONDITION;
+elseCondition: ELSE misc* COMMON_OPEN_BLOCK  code? COMMON_CLOSE_BLOCK;
+code: misc* (tagVariable|documentVariable|attrVariable|conditionOperator|function|appendOperator)* misc* ;
+script: prolog? misc* scriptOpen constants scriptBodyOpen code? scriptBodyClose  scriptClose;
 
 scriptOpen: misc* OPEN_SCRIPT_TAG misc*;
 scriptClose: misc* CLOSE_SCRIPT_TAG misc*;
 scriptBodyOpen: misc* OPEN_SCRIPT_BODY_TAG misc*;
 scriptBodyClose: misc* CLOSE_SCRIPT_BODY_TAG misc*;
-constants: OPEN_CONSTANTS_TAG (complex_tag | simple_tag)* CLOSE_CONSTANTS_TAG;
+constants: OPEN_CONSTANTS_TAG (documentVariable|tagVariable|attrVariable)* CLOSE_CONSTANTS_TAG;
 prolog      :   XMLDeclOpen attribute* SPECIAL_CLOSE ;
-//cycleOperatorExpression: (WORD misc* IN misc* WORD| NUMBER);
 
 
 reference   :   EntityRef | CharRef ;
 
-attribute   :   Name '=' STRING ; // Our STRING is AttValue in spec
+attribute   :   Name EQUALS STRING ; // Our STRING is AttValue in spec
 
 /** ``All text that is not markup constitutes the character data of
  *  the document.''
  */
-chardata    :   TEXT | SEA_WS ;
+chardata    :   EXPRESSION_ARGUMENTS | SEA_WS ;
 
 misc        :   COMMENT | SEA_WS ;

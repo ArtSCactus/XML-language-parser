@@ -6,14 +6,14 @@ import java.util.*;
  * @author ArtSCactus
  * @version 1.0
  */
-public class ComplexTag implements ConstantTag {
+public class ComplexTag implements Tag {
     private String name;
     private String value;
-    private List<ConstantTag> childes;
+    private List<Tag> childes;
     private Map<String, String> attributes;
     private final TagType type;
 
-    public ComplexTag(String name, String value, List<ConstantTag> childes, Map<String, String> attributes) {
+    public ComplexTag(String name, String value, List<Tag> childes, Map<String, String> attributes) {
         this.name = name;
         this.value = value;
         this.childes = childes;
@@ -29,9 +29,9 @@ public class ComplexTag implements ConstantTag {
         this.type = TagType.COMPLEX;
     }
 
-    public ComplexTag(String name, String value) {
+    public ComplexTag(String name) {
         this.name = name;
-        this.value = value;
+        this.value = "";
         this.childes = new ArrayList<>();
         this.attributes = new HashMap<>();
         this.type = TagType.COMPLEX;
@@ -64,12 +64,12 @@ public class ComplexTag implements ConstantTag {
     public void setValue(String value) {
         this.value = value;
     }
-
-    public List<ConstantTag> getChildes() {
+    @Override
+    public List<Tag> getChildes() {
         return childes;
     }
 
-    public void setChildes(List<ConstantTag> childes) {
+    public void setChildes(List<Tag> childes) {
         this.childes = childes;
     }
 

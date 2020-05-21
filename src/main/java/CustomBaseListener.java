@@ -1,9 +1,3 @@
-import tag.ComplexTag;
-import tag.ConstantTag;
-import tag.SimpleTag;
-
-import java.util.*;
-
 /**
  * @author ArtSCactus
  * @version 1.0
@@ -24,7 +18,6 @@ public class CustomBaseListener extends XMLParserBaseListener {
      */
     @Override
     public void enterCode(XMLParser.CodeContext ctx) {
-        System.out.println(ctx.conditionOperator().get(0).toString());
         super.enterCode(ctx);
     }
 
@@ -37,7 +30,7 @@ public class CustomBaseListener extends XMLParserBaseListener {
      */
     @Override
     public void enterConditionOperator(XMLParser.ConditionOperatorContext ctx) {
-        System.out.println(ctx.IF().toString()+ctx.OPEN_BLOCK().toString()+ctx.CLOSE_BLOCK().toString());
+        super.enterConditionOperator(ctx);
     }
 
     /**

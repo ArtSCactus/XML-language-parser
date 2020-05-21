@@ -67,6 +67,156 @@ public interface XMLParserListener extends ParseTreeListener {
 	 */
 	void exitComplex_tag_close(XMLParser.Complex_tag_closeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link XMLParser#tagVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterTagVariable(XMLParser.TagVariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#tagVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitTagVariable(XMLParser.TagVariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#documentVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterDocumentVariable(XMLParser.DocumentVariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#documentVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitDocumentVariable(XMLParser.DocumentVariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#attrVariable}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttrVariable(XMLParser.AttrVariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#attrVariable}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttrVariable(XMLParser.AttrVariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#tagVariableName}.
+	 * @param ctx the parse tree
+	 */
+	void enterTagVariableName(XMLParser.TagVariableNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#tagVariableName}.
+	 * @param ctx the parse tree
+	 */
+	void exitTagVariableName(XMLParser.TagVariableNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#tagVariableValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterTagVariableValue(XMLParser.TagVariableValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#tagVariableValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitTagVariableValue(XMLParser.TagVariableValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#docVariableName}.
+	 * @param ctx the parse tree
+	 */
+	void enterDocVariableName(XMLParser.DocVariableNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#docVariableName}.
+	 * @param ctx the parse tree
+	 */
+	void exitDocVariableName(XMLParser.DocVariableNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#docVariableValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterDocVariableValue(XMLParser.DocVariableValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#docVariableValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitDocVariableValue(XMLParser.DocVariableValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#attrVariableValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttrVariableValue(XMLParser.AttrVariableValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#attrVariableValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttrVariableValue(XMLParser.AttrVariableValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#attrName}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttrName(XMLParser.AttrNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#attrName}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttrName(XMLParser.AttrNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#attrValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttrValue(XMLParser.AttrValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#attrValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttrValue(XMLParser.AttrValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#appendOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterAppendOperator(XMLParser.AppendOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#appendOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitAppendOperator(XMLParser.AppendOperatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#appendOperatorChildName}.
+	 * @param ctx the parse tree
+	 */
+	void enterAppendOperatorChildName(XMLParser.AppendOperatorChildNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#appendOperatorChildName}.
+	 * @param ctx the parse tree
+	 */
+	void exitAppendOperatorChildName(XMLParser.AppendOperatorChildNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#appendOperatorParentName}.
+	 * @param ctx the parse tree
+	 */
+	void enterAppendOperatorParentName(XMLParser.AppendOperatorParentNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#appendOperatorParentName}.
+	 * @param ctx the parse tree
+	 */
+	void exitAppendOperatorParentName(XMLParser.AppendOperatorParentNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#appendOperatorToWord}.
+	 * @param ctx the parse tree
+	 */
+	void enterAppendOperatorToWord(XMLParser.AppendOperatorToWordContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#appendOperatorToWord}.
+	 * @param ctx the parse tree
+	 */
+	void exitAppendOperatorToWord(XMLParser.AppendOperatorToWordContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction(XMLParser.FunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction(XMLParser.FunctionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link XMLParser#conditionOperator}.
 	 * @param ctx the parse tree
 	 */
@@ -77,15 +227,25 @@ public interface XMLParserListener extends ParseTreeListener {
 	 */
 	void exitConditionOperator(XMLParser.ConditionOperatorContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XMLParser#cycleOperator}.
+	 * Enter a parse tree produced by {@link XMLParser#conditionType}.
 	 * @param ctx the parse tree
 	 */
-	void enterCycleOperator(XMLParser.CycleOperatorContext ctx);
+	void enterConditionType(XMLParser.ConditionTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XMLParser#cycleOperator}.
+	 * Exit a parse tree produced by {@link XMLParser#conditionType}.
 	 * @param ctx the parse tree
 	 */
-	void exitCycleOperator(XMLParser.CycleOperatorContext ctx);
+	void exitConditionType(XMLParser.ConditionTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#elseCondition}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseCondition(XMLParser.ElseConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#elseCondition}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseCondition(XMLParser.ElseConditionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XMLParser#code}.
 	 * @param ctx the parse tree
@@ -166,16 +326,6 @@ public interface XMLParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProlog(XMLParser.PrologContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link XMLParser#operatorExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterOperatorExpression(XMLParser.OperatorExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link XMLParser#operatorExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitOperatorExpression(XMLParser.OperatorExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XMLParser#reference}.
 	 * @param ctx the parse tree

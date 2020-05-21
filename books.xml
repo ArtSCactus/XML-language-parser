@@ -1,17 +1,19 @@
 <XMLScript>
    <constants>
-      <tag name="TrueName" value="trueValue" attr="someAttr">
-         <tag name="one" value="one" attr="additionalAttr"/>
-         <tag name="two" value="two" attr="two"/>
-      <tag name="InsideTag" value="trueValue" attr="someAttr">
-         <tag name="insideOne" value="one" attr="additionalAttr"/>
-         <tag name="insideTwo" value="two" attr="two"/>
-      </tag>
-      </tag>
+      doc mydocname = mydoc;
+      attr myAttribute = name : value;
+      tag a = myTag;
+      tag b = notMyTag;
    </constants>
-<body>
-   if{}
-</body>
+   <body>
+      append a : b;
+      append c : f;
+      if (i == c){
+
+      } else {
+      append k:d;
+      }
+   </body>
 </XMLScript>
 
 
