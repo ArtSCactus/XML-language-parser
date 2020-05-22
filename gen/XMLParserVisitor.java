@@ -106,6 +106,18 @@ public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAttrValue(XMLParser.AttrValueContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link XMLParser#variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable(XMLParser.VariableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#operator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperator(XMLParser.OperatorContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link XMLParser#appendOperator}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -148,6 +160,18 @@ public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConditionType(XMLParser.ConditionTypeContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link XMLParser#ifCondition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfCondition(XMLParser.IfConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#conditionExitFlag}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditionExitFlag(XMLParser.ConditionExitFlagContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link XMLParser#elseCondition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -159,6 +183,12 @@ public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCode(XMLParser.CodeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#insideBlockCode}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInsideBlockCode(XMLParser.InsideBlockCodeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link XMLParser#script}.
 	 * @param ctx the parse tree

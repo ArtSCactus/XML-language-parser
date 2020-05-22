@@ -167,6 +167,26 @@ public interface XMLParserListener extends ParseTreeListener {
 	 */
 	void exitAttrValue(XMLParser.AttrValueContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link XMLParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable(XMLParser.VariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable(XMLParser.VariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#operator}.
+	 * @param ctx the parse tree
+	 */
+	void enterOperator(XMLParser.OperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#operator}.
+	 * @param ctx the parse tree
+	 */
+	void exitOperator(XMLParser.OperatorContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link XMLParser#appendOperator}.
 	 * @param ctx the parse tree
 	 */
@@ -237,6 +257,26 @@ public interface XMLParserListener extends ParseTreeListener {
 	 */
 	void exitConditionType(XMLParser.ConditionTypeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link XMLParser#ifCondition}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfCondition(XMLParser.IfConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#ifCondition}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfCondition(XMLParser.IfConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#conditionExitFlag}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionExitFlag(XMLParser.ConditionExitFlagContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#conditionExitFlag}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionExitFlag(XMLParser.ConditionExitFlagContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link XMLParser#elseCondition}.
 	 * @param ctx the parse tree
 	 */
@@ -256,6 +296,16 @@ public interface XMLParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCode(XMLParser.CodeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#insideBlockCode}.
+	 * @param ctx the parse tree
+	 */
+	void enterInsideBlockCode(XMLParser.InsideBlockCodeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#insideBlockCode}.
+	 * @param ctx the parse tree
+	 */
+	void exitInsideBlockCode(XMLParser.InsideBlockCodeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XMLParser#script}.
 	 * @param ctx the parse tree

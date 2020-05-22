@@ -76,6 +76,57 @@ private Map<String, Document> documentMap;
     }
 
     @Override
+    public Map<String, Tag> getAllTags() {
+        return tagMap;
+    }
+
+    @Override
+    public Map<String, Document> getAllDocuments() {
+        return documentMap;
+    }
+
+    @Override
+    public Map<String, Attribute> getAllAttributes() {
+        return attributeMap;
+    }
+
+    @Override
+    public void addAllDocuments(Map<String, Document> map) {
+        documentMap.putAll(map);
+    }
+
+    @Override
+    public void addAllTags(Map<String, Tag> map) {
+        tagMap.putAll(map);
+    }
+
+    @Override
+    public void addAllAttributes(Map<String, Attribute> map) {
+        attributeMap.putAll(map);
+    }
+
+    @Override
+    public void removeTemporaryTagVariables(Map<String, Tag> temporaryVars) {
+        for (String name : temporaryVars.keySet()){
+            tagMap.remove(name);
+        }
+    }
+
+    @Override
+    public void removeTemporaryDocumentVariables(Map<String, Document> temporaryVars) {
+        for (String name : temporaryVars.keySet()){
+            documentMap.remove(name);
+        }
+    }
+
+    @Override
+    public void removeTemporaryAttributeVariables(Map<String, Attribute> temporaryVars) {
+        for (String name : temporaryVars.keySet()){
+            attributeMap.remove(name);
+        }
+    }
+
+    @Override
     public Variable getVariable(String name) {
         Variable var = tagMap.get(name);
         if (var != null){

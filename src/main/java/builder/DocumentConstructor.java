@@ -61,11 +61,9 @@ public class DocumentConstructor {
     }
 
     public void buildDocument(List<Tag> tagList) throws TransformerException {
-        tagList.forEach(constantTag -> document.appendChild(appendTag(constantTag))); TransformerFactory tFactory =
-                TransformerFactory.newInstance();
-        Transformer transformer =
-                tFactory.newTransformer();
-
+        tagList.forEach(constantTag -> document.appendChild(appendTag(constantTag)));
+        TransformerFactory tFactory = TransformerFactory.newInstance();
+        Transformer transformer = tFactory.newTransformer();
         DOMSource source = new DOMSource(document);
         File resultFile = new File("result.xml");
         StreamResult result = new StreamResult(resultFile);

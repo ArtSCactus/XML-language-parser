@@ -3,6 +3,7 @@ package tag;
 import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author ArtSCactus
@@ -47,4 +48,27 @@ private String name;
         }
         return null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DefaultDocument)) return false;
+        DefaultDocument that = (DefaultDocument) o;
+        return Objects.equals(getChildes(), that.getChildes()) &&
+                Objects.equals(getName(), that.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getChildes(), getName());
+    }
+
+    @Override
+    public String toString() {
+        return "DefaultDocument{" +
+                "childes=" + childes +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
+

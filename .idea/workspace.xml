@@ -2,37 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0e44370-7411-4da7-8497-71dff66554bd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/builder/DocumentConstructor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/builder/MainConstructor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interpreter/CommandStack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interpreter/VariableStorageImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/interpreter/VariablesStorage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/operator/AppendOperator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/operator/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/operator/ConditionOperator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tag/Attribute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tag/DefaultDocument.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tag/Document.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tag/Variable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/operator/VariableCastException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/books.xml" beforeDir="false" afterPath="$PROJECT_DIR$/books.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/XMLLexer.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/XMLLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/XMLLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/XMLParser.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/XMLParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/XMLParser.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/XMLParserBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/XMLParserBaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/XMLParserListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/XMLParserVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/XMLLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/gen/XMLLexer.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/XMLLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/XMLLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/XMLLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/gen/XMLLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/XMLParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/gen/XMLParser.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/XMLParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/XMLParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/gen/XMLParser.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/XMLParserBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/XMLParserBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/XMLParserBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/XMLParserBaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/XMLParserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/XMLParserListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/XMLParserVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/XMLParserVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result.xml" beforeDir="false" afterPath="$PROJECT_DIR$/result.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CustomBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CustomBaseListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ScriptStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tag/AttributeImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Visitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tag/ComplexTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tag/ComplexTag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tag/ConstantTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tag/Tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tag/SimpleTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tag/SimpleTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/builder/DocumentConstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/builder/DocumentConstructor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/builder/MainConstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/builder/MainConstructor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interpreter/VariableStorageImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interpreter/VariableStorageImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interpreter/VariablesStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interpreter/VariablesStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/operator/AppendOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/operator/AppendOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/operator/ConditionOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/operator/ConditionOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tag/DefaultDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tag/DefaultDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/XMLLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/XMLLexer.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/XMLParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/XMLParser.g4" afterDir="false" />
     </list>
@@ -48,8 +41,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -92,20 +85,23 @@
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\XML-language-parser\src\main\java\tag" />
+      <recent name="D:\Projects\XML-language-parser\src\main\java\operator" />
+      <recent name="D:\Projects\XML-language-parser\src\main\java\interpreter" />
+      <recent name="D:\Projects\XML-language-parser\src\main\resources" />
+      <recent name="D:\Projects\XML-language-parser\src\main\java" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="operator" />
+      <recent name="tag" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Projects\XML-language-parser\src\main\java" />
       <recent name="D:\Projects\XML-language-parser\src\main\resources" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="tag" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Projects\XML-language-parser\src\main\resources" />
-      <recent name="D:\Projects\XML-language-parser\src\main\java" />
-      <recent name="D:\Projects\XML-language-parser" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -114,7 +110,33 @@
       <command value="git rm target/ -r --cached" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main (2)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tag.Main" />
+      <module name="XML based language" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tag.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="builder.Main" />
+      <module name="XML based language" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="builder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="XML based language" />
@@ -124,7 +146,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -154,7 +178,8 @@
       <workItem from="1589577628550" duration="272000" />
       <workItem from="1589581902399" duration="6217000" />
       <workItem from="1589741746841" duration="3452000" />
-      <workItem from="1589839511459" duration="46607000" />
+      <workItem from="1589839511459" duration="63220000" />
+      <workItem from="1590165380806" duration="8839000" />
     </task>
     <servers />
   </component>
@@ -162,10 +187,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="115" key="#com.intellij.ide.util.MemberChooser" timestamp="1590003881895">
+    <state x="574" y="115" key="#com.intellij.ide.util.MemberChooser" timestamp="1590088730658">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="115" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1590003881895" />
+    <state x="574" y="115" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1590088730658" />
     <state x="594" y="22" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1587331507267">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -190,38 +215,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="669" y="223" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589503883421" />
-    <state width="1493" height="252" key="GridCell.Tab.0.bottom" timestamp="1590004809156">
+    <state width="1493" height="247" key="GridCell.Tab.0.bottom" timestamp="1590186152855">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590004809156" />
-    <state width="1493" height="252" key="GridCell.Tab.0.center" timestamp="1590004809156">
+    <state width="1493" height="247" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590186152855" />
+    <state width="1493" height="247" key="GridCell.Tab.0.center" timestamp="1590186152854">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590004809156" />
-    <state width="1493" height="252" key="GridCell.Tab.0.left" timestamp="1590004809156">
+    <state width="1493" height="247" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590186152854" />
+    <state width="1493" height="247" key="GridCell.Tab.0.left" timestamp="1590186152854">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590004809156" />
-    <state width="1493" height="252" key="GridCell.Tab.0.right" timestamp="1590004809156">
+    <state width="1493" height="247" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590186152854" />
+    <state width="1493" height="247" key="GridCell.Tab.0.right" timestamp="1590186152855">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590004809156" />
-    <state width="1493" height="252" key="GridCell.Tab.1.bottom" timestamp="1590004809156">
+    <state width="1493" height="247" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590186152855" />
+    <state width="1493" height="264" key="GridCell.Tab.1.bottom" timestamp="1590184728839">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590004809156" />
-    <state width="1493" height="252" key="GridCell.Tab.1.center" timestamp="1590004809156">
+    <state width="1493" height="264" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590184728839" />
+    <state width="1493" height="264" key="GridCell.Tab.1.center" timestamp="1590184728839">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1590004809156" />
-    <state width="1493" height="252" key="GridCell.Tab.1.left" timestamp="1590004809156">
+    <state width="1493" height="264" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1590184728839" />
+    <state width="1493" height="264" key="GridCell.Tab.1.left" timestamp="1590184728839">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1590004809156" />
-    <state width="1493" height="252" key="GridCell.Tab.1.right" timestamp="1590004809156">
+    <state width="1493" height="264" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1590184728839" />
+    <state width="1493" height="264" key="GridCell.Tab.1.right" timestamp="1590184728839">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="252" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1590004809156" />
+    <state width="1493" height="264" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1590184728839" />
     <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1584379497355">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -230,10 +255,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589890789682" />
-    <state x="444" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1589839544273">
+    <state x="444" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1590165696142">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="444" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1589839544273" />
+    <state x="444" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1590165696142" />
     <state x="498" y="300" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1584383753001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -256,8 +281,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Visitor.java</url>
-          <line>168</line>
-          <option name="timeStamp" value="23" />
+          <line>140</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/builder/MainConstructor.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/builder/MainConstructor.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

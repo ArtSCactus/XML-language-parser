@@ -50,18 +50,24 @@ docVariableValue: DOCUMENT_WORD;
 attrVariableValue: attrName ATTRIBUTE_DELIMITER attrValue;
 attrName: ATTRIBUTE_WORD;
 attrValue: ATTRIBUTE_WORD;
+variable: tagVariable|documentVariable|attrVariable;
+operator: conditionOperator|appendOperator;
 
 appendOperator: misc* APPEND_OPERATOR_DECLARATION appendOperatorChildName appendOperatorToWord appendOperatorParentName END_OF_OPERATOR;
 appendOperatorChildName: APPEND_OPERATOR_WORD;
 appendOperatorParentName: APPEND_OPERATOR_WORD;
 appendOperatorToWord: TO_SYMBOL;
 
-function: misc* (FUNCTION_WORD|FUNCTION_WORD_SHORT) FUNC_NAME FUNC_OPEN_CODE_BLOCK code? FUNC_CLOSE_CODE_BLOCK misc*;
+function: misc* (FUNCTION_WORD|FUNCTION_WORD_SHORT) FUNC_NAME FUNC_OPEN_CODE_BLOCK insideBlockCode? FUNC_CLOSE_CODE_BLOCK misc*;
 
-conditionOperator: misc* IF misc* CONDITION_BRACKETS_OPEN misc* CONDITION_WORD conditionType CONDITION_WORD misc* CONDITION_BRACKETS_CLOSE misc* COMMON_OPEN_BLOCK code? COMMON_CLOSE_BLOCK misc* elseCondition?;
+conditionOperator: misc* IF misc* CONDITION_BRACKETS_OPEN misc* CONDITION_WORD conditionType CONDITION_WORD misc* CONDITION_BRACKETS_CLOSE ifCondition elseCondition? conditionExitFlag;
 conditionType: EQUALS_CONDITION;
-elseCondition: ELSE misc* COMMON_OPEN_BLOCK  code? COMMON_CLOSE_BLOCK;
+ifCondition: misc* COMMON_OPEN_BLOCK insideBlockCode? COMMON_CLOSE_BLOCK misc*;
+conditionExitFlag: CONDITION_END;
+elseCondition: ELSE misc* COMMON_OPEN_BLOCK  insideBlockCode? COMMON_CLOSE_BLOCK;
+
 code: misc* (tagVariable|documentVariable|attrVariable|conditionOperator|function|appendOperator)* misc* ;
+insideBlockCode: misc* (variable|operator)* misc*;
 script: prolog? misc* scriptOpen constants scriptBodyOpen code? scriptBodyClose  scriptClose;
 
 scriptOpen: misc* OPEN_SCRIPT_TAG misc*;

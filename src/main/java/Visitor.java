@@ -1,7 +1,7 @@
-
 import builder.MainConstructor;
 import interpreter.VariableStorageImpl;
 import interpreter.VariablesStorage;
+import operator.AppendOperator;
 import operator.Command;
 import operator.ConditionOperator;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -19,10 +19,12 @@ public class Visitor extends XMLParserBaseVisitor<Tag> {
     private List<Tag> constants;
     private MainConstructor mainConstructor;
     private VariablesStorage variablesStorage;
+    private Stack<ConditionOperator> conditionNesting;
+
+
 
     @Override
     public Tag visitConstants(XMLParser.ConstantsContext ctx) {
-        variablesStorage = new VariableStorageImpl();
         for (XMLParser.DocumentVariableContext doc :ctx.documentVariable()){
             variablesStorage.addDocument(doc.docVariableName().DOCUMENT_WORD().getText(), new DefaultDocument(doc.docVariableValue().DOCUMENT_WORD().getText()));
         }
@@ -39,6 +41,8 @@ public class Visitor extends XMLParserBaseVisitor<Tag> {
 
     @Override
     public Tag visitScript(XMLParser.ScriptContext ctx) {
+        conditionNesting = new Stack<>();
+        variablesStorage = new VariableStorageImpl();
         return super.visitScript(ctx);
     }
 
@@ -52,9 +56,89 @@ public class Visitor extends XMLParserBaseVisitor<Tag> {
         return super.visitCode(ctx);
     }
 
+
+
     @Override
     public Tag visitConditionOperator(XMLParser.ConditionOperatorContext ctx) {
+        if (conditionNesting == null){
+            conditionNesting = new Stack<>();
+        }
+        ConditionOperator operator = new ConditionOperator();
+        operator.setFirstArg(ctx.CONDITION_WORD(0).getText());
+        operator.setSecondArg(ctx.CONDITION_WORD(1).getText());
+        conditionNesting.push(operator);
         return super.visitConditionOperator(ctx);
+    }
+
+    @Override
+    public Tag visitIfCondition(XMLParser.IfConditionContext ctx) {
+        ConditionOperator operator = conditionNesting.peek();
+        List<XMLParser.VariableContext> varContexts = ctx.insideBlockCode().variable();
+        List<XMLParser.OperatorContext> operatorContexts = ctx.insideBlockCode().operator();
+        for (XMLParser.VariableContext context : varContexts){
+            if (!context.attrVariable().isEmpty()){
+                operator.addAttribute(context.attrVariable().ATTRIBUTE_WORD().getText(),
+                        new AttributeImpl(
+                                context.attrVariable().attrVariableValue().attrName().ATTRIBUTE_WORD().getText(),
+                                context.attrVariable().attrVariableValue().attrValue().ATTRIBUTE_WORD().getText()));
+                continue;
+            }
+            if (!context.documentVariable().isEmpty()){
+                operator.addDocument(context.documentVariable().docVariableName().DOCUMENT_WORD().getText(), new DefaultDocument(context.documentVariable().docVariableValue().DOCUMENT_WORD().getText()));
+                continue;
+            }
+            if (!context.tagVariable().isEmpty()){
+                operator.addTag(context.tagVariable().tagVariableName().TAG_WORD().getText(),
+                        new ComplexTag(context.tagVariable().tagVariableValue().TAG_WORD().getText()));
+                continue;
+            }
+        }
+        for (XMLParser.OperatorContext operatorContext : operatorContexts){
+            if (!operatorContext.appendOperator().isEmpty()){
+                operator.addIfCommand(new AppendOperator(operatorContext.appendOperator().appendOperatorParentName().APPEND_OPERATOR_WORD().getText(),
+                        operatorContext.appendOperator().appendOperatorChildName().APPEND_OPERATOR_WORD().getText()));
+            }
+        }
+        return super.visitIfCondition(ctx);
+    }
+
+    @Override
+    public Tag visitConditionExitFlag(XMLParser.ConditionExitFlagContext ctx) {
+        ConditionOperator operator = conditionNesting.pop();
+        variablesStorage.applyCommand(operator);
+        return super.visitConditionExitFlag(ctx);
+    }
+
+    @Override
+    public Tag visitElseCondition(XMLParser.ElseConditionContext ctx) {
+        ConditionOperator operator = conditionNesting.peek();
+        List<XMLParser.VariableContext> varContexts = ctx.insideBlockCode().variable();
+        List<XMLParser.OperatorContext> operatorContexts = ctx.insideBlockCode().operator();
+        for (XMLParser.VariableContext context : varContexts){
+            if (!context.attrVariable().isEmpty()){
+                operator.addAttribute(context.attrVariable().ATTRIBUTE_WORD().getText(),
+                        new AttributeImpl(
+                                context.attrVariable().attrVariableValue().attrName().ATTRIBUTE_WORD().getText(),
+                                context.attrVariable().attrVariableValue().attrValue().ATTRIBUTE_WORD().getText()));
+                continue;
+            }
+            if (!context.documentVariable().isEmpty()){
+                operator.addDocument(context.documentVariable().docVariableName().DOCUMENT_WORD().getText(), new DefaultDocument(context.documentVariable().docVariableValue().DOCUMENT_WORD().getText()));
+                continue;
+            }
+            if (!context.tagVariable().isEmpty()){
+                operator.addTag(context.tagVariable().tagVariableName().TAG_WORD().getText(),
+                        new ComplexTag(context.tagVariable().tagVariableValue().TAG_WORD().getText()));
+                continue;
+            }
+        }
+        for (XMLParser.OperatorContext operatorContext : operatorContexts){
+            if (!operatorContext.appendOperator().isEmpty()){
+                operator.addElseCommand(new AppendOperator(operatorContext.appendOperator().appendOperatorParentName().APPEND_OPERATOR_WORD().getText(),
+                        operatorContext.appendOperator().appendOperatorChildName().APPEND_OPERATOR_WORD().getText()));
+            }
+        }
+        return super.visitElseCondition(ctx);
     }
 
     @Override
@@ -166,13 +250,22 @@ public class Visitor extends XMLParserBaseVisitor<Tag> {
 
     @Override
     public Tag visitAppendOperator(XMLParser.AppendOperatorContext ctx) {
-        System.out.println("Append operator call. Args: "+ctx.appendOperatorParentName().APPEND_OPERATOR_WORD().getText()+" to "+
-                ctx.appendOperatorChildName().APPEND_OPERATOR_WORD().getText());
+        String parent = ctx.appendOperatorParentName().APPEND_OPERATOR_WORD().getText();
+        String child = ctx.appendOperatorChildName().APPEND_OPERATOR_WORD().getText();
+        System.out.println("Append operator call. Args: child->"+child+" to parent->"+
+                parent);
+        if (conditionNesting.isEmpty()){
+            variablesStorage.applyCommand(new AppendOperator(parent, child));
+        }
         return super.visitAppendOperator(ctx);
     }
 
     public List<Tag> getConstants(){
         return constants;
+    }
+
+    public Map<String, Document> getDocuments(){
+        return variablesStorage.getAllDocuments();
     }
 
 }

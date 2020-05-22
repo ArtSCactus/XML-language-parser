@@ -1,18 +1,14 @@
 <XMLScript>
    <constants>
       doc mydocname = mydoc;
-      attr myAttribute = name : value;
-      tag a = myTag;
-      tag b = notMyTag;
+      tag tagA = myTagName;
+      tag tagB = notMyTagName;
    </constants>
    <body>
-      append a : b;
-      append c : f;
-      if (i == c){
-
-      } else {
-      append k:d;
-      }
+      append tagB : tagA;
+      append tagA : mydocname;
+      if (tagA == tagA){
+      };
    </body>
 </XMLScript>
 

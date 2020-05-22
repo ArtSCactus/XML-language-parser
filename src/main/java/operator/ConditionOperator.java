@@ -1,6 +1,11 @@
 package operator;
 
+import interpreter.VariableStorageImpl;
 import interpreter.VariablesStorage;
+import tag.Attribute;
+import tag.Document;
+import tag.Tag;
+import tag.Variable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,18 +18,18 @@ import java.util.Stack;
 public class ConditionOperator implements Command {
     private String firstArg;
     private String secondArg;
-    private Map<String, Object> vars;
+    private VariablesStorage vars;
     private Stack<Command> ifCommands;
     private Stack<Command> elseCommands;
 
-    public ConditionOperator(Map<String, Object> vars, Stack<Command> ifCommands, Stack<Command> elseCommands) {
+    public ConditionOperator(VariablesStorage vars, Stack<Command> ifCommands, Stack<Command> elseCommands) {
         this.vars = vars;
         this.ifCommands = ifCommands;
         this.elseCommands = elseCommands;
     }
 
     public ConditionOperator() {
-        vars = new HashMap<>();
+        vars = new VariableStorageImpl();
         ifCommands = new Stack<>();
         elseCommands= new Stack<>();
     }
@@ -45,14 +50,6 @@ public class ConditionOperator implements Command {
         this.secondArg = secondArg;
     }
 
-    public Map<String, Object> getVars() {
-        return vars;
-    }
-
-    public void setVars(Map<String, Object> vars) {
-        this.vars = vars;
-    }
-
     public Stack<Command> getIfCommands() {
         return ifCommands;
     }
@@ -69,16 +66,29 @@ public class ConditionOperator implements Command {
         this.elseCommands = elseCommands;
     }
 
-    public void addVar(String name, Object value){
-        vars.put(name, value);
+    public void addTag(String name, Tag tag){
+        vars.addTagVariable(name, tag);
+    }
+    public void addDocument(String name, Document document){
+        vars.addDocument(name, document);
+    }
+    public void addAttribute(String name, Attribute attribute){
+        vars.addAttribute(name, attribute);
     }
 
-    public void removeVar(String name){
-        vars.remove(name);
+    public void addIfCommand(Command command){
+        ifCommands.push(command);
+    }
+
+    public void addElseCommand(Command command){
+        elseCommands.push(command);
     }
 
     @Override
     public void execute(VariablesStorage storage) {
+        storage.addAllAttributes(vars.getAllAttributes());
+        storage.addAllDocuments(vars.getAllDocuments());
+        storage.addAllTags(vars.getAllTags());
         if (storage.getVariable(firstArg).equals(storage.getVariable(secondArg))){
             for (Command cmd : ifCommands){
                 cmd.execute(storage);
@@ -88,5 +98,8 @@ public class ConditionOperator implements Command {
                 cmd.execute(storage);
             }
         }
+        storage.removeTemporaryAttributeVariables(vars.getAllAttributes());
+        storage.removeTemporaryTagVariables(vars.getAllTags());
+        storage.removeTemporaryDocumentVariables(vars.getAllDocuments());
     }
 }
