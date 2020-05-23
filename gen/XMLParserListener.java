@@ -237,6 +237,36 @@ public interface XMLParserListener extends ParseTreeListener {
 	 */
 	void exitFunction(XMLParser.FunctionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link XMLParser#functionDeclarationEnd}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionDeclarationEnd(XMLParser.FunctionDeclarationEndContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#functionDeclarationEnd}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionDeclarationEnd(XMLParser.FunctionDeclarationEndContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#functionRun}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionRun(XMLParser.FunctionRunContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#functionRun}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionRun(XMLParser.FunctionRunContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XMLParser#args}.
+	 * @param ctx the parse tree
+	 */
+	void enterArgs(XMLParser.ArgsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XMLParser#args}.
+	 * @param ctx the parse tree
+	 */
+	void exitArgs(XMLParser.ArgsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link XMLParser#conditionOperator}.
 	 * @param ctx the parse tree
 	 */

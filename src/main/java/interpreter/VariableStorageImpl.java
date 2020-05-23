@@ -1,6 +1,7 @@
 package interpreter;
 
 import operator.Command;
+import operator.Function;
 import tag.Attribute;
 import tag.Document;
 import tag.Tag;
@@ -18,17 +19,45 @@ public class VariableStorageImpl implements VariablesStorage{
 private Map<String, Tag> tagMap;
 private Map<String, Attribute> attributeMap;
 private Map<String, Document> documentMap;
+private Map<String, Function> functionMap;
 
     public VariableStorageImpl(Map<String, Tag> tagMap) {
         this.tagMap = tagMap;
         this.attributeMap = new HashMap<>();
         this.documentMap = new HashMap<>();
+        this.functionMap = new HashMap<>();
     }
 
     public VariableStorageImpl() {
         this.tagMap = new HashMap<>();
         this.attributeMap = new HashMap<>();
         this.documentMap = new HashMap<>();
+        this.functionMap = new HashMap<>();
+    }
+
+    @Override
+    public Function getFunction(String name) {
+        return functionMap.get(name);
+    }
+
+    @Override
+    public Map<String, Function> getAllFunction() {
+        return functionMap;
+    }
+
+    @Override
+    public void addAllFunctions(Map<String, Function> map) {
+        functionMap.putAll(map);
+    }
+
+    @Override
+    public void addFunction(String name, Function function) {
+        functionMap.put(name, function);
+    }
+
+    @Override
+    public void removeFunction(String name) {
+        functionMap.remove(name);
     }
 
     @Override
@@ -48,7 +77,7 @@ private Map<String, Document> documentMap;
 
     @Override
     public void removeDocument(String name) {
-
+        documentMap.remove(name);
     }
 
     public void addAttribute(String name, Attribute var) {

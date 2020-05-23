@@ -51,22 +51,24 @@ attrVariableValue: attrName ATTRIBUTE_DELIMITER attrValue;
 attrName: ATTRIBUTE_WORD;
 attrValue: ATTRIBUTE_WORD;
 variable: tagVariable|documentVariable|attrVariable;
-operator: conditionOperator|appendOperator;
+operator: conditionOperator|appendOperator|functionRun;
 
 appendOperator: misc* APPEND_OPERATOR_DECLARATION appendOperatorChildName appendOperatorToWord appendOperatorParentName END_OF_OPERATOR;
 appendOperatorChildName: APPEND_OPERATOR_WORD;
 appendOperatorParentName: APPEND_OPERATOR_WORD;
 appendOperatorToWord: TO_SYMBOL;
 
-function: misc* (FUNCTION_WORD|FUNCTION_WORD_SHORT) FUNC_NAME FUNC_OPEN_CODE_BLOCK insideBlockCode? FUNC_CLOSE_CODE_BLOCK misc*;
-
+function: misc* (FUNCTION_WORD|FUNCTION_WORD_SHORT) FUNC_NAME COMMON_OPEN_BLOCK insideBlockCode? COMMON_CLOSE_BLOCK functionDeclarationEnd misc*;
+functionDeclarationEnd: CONDITION_END;
+functionRun: misc* RUN_FUNCTION_WORD misc* FUNC_RUN_WORD misc* FUNC_RUN_END misc*;
+args: FUNC_RUN_WORD*;
 conditionOperator: misc* IF misc* CONDITION_BRACKETS_OPEN misc* CONDITION_WORD conditionType CONDITION_WORD misc* CONDITION_BRACKETS_CLOSE ifCondition elseCondition? conditionExitFlag;
 conditionType: EQUALS_CONDITION;
 ifCondition: misc* COMMON_OPEN_BLOCK insideBlockCode? COMMON_CLOSE_BLOCK misc*;
 conditionExitFlag: CONDITION_END;
 elseCondition: ELSE misc* COMMON_OPEN_BLOCK  insideBlockCode? COMMON_CLOSE_BLOCK;
 
-code: misc* (tagVariable|documentVariable|attrVariable|conditionOperator|function|appendOperator)* misc* ;
+code: misc* (tagVariable|documentVariable|attrVariable|conditionOperator|function|appendOperator|functionRun)* misc* ;
 insideBlockCode: misc* (variable|operator)* misc*;
 script: prolog? misc* scriptOpen constants scriptBodyOpen code? scriptBodyClose  scriptClose;
 
@@ -74,7 +76,7 @@ scriptOpen: misc* OPEN_SCRIPT_TAG misc*;
 scriptClose: misc* CLOSE_SCRIPT_TAG misc*;
 scriptBodyOpen: misc* OPEN_SCRIPT_BODY_TAG misc*;
 scriptBodyClose: misc* CLOSE_SCRIPT_BODY_TAG misc*;
-constants: OPEN_CONSTANTS_TAG (documentVariable|tagVariable|attrVariable)* CLOSE_CONSTANTS_TAG;
+constants: OPEN_CONSTANTS_TAG (documentVariable|tagVariable|attrVariable|function)* CLOSE_CONSTANTS_TAG;
 prolog      :   XMLDeclOpen attribute* SPECIAL_CLOSE ;
 
 

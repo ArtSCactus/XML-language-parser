@@ -1,9 +1,11 @@
 import builder.MainConstructor;
+import exception.UndefinedFunctionException;
 import interpreter.VariableStorageImpl;
 import interpreter.VariablesStorage;
 import operator.AppendOperator;
 import operator.Command;
 import operator.ConditionOperator;
+import operator.Function;
 import org.antlr.v4.runtime.tree.ParseTree;
 import tag.*;
 
@@ -20,6 +22,7 @@ public class Visitor extends XMLParserBaseVisitor<Tag> {
     private MainConstructor mainConstructor;
     private VariablesStorage variablesStorage;
     private Stack<ConditionOperator> conditionNesting;
+    private boolean insideFunctionDeclaration;
 
 
 
@@ -28,6 +31,7 @@ public class Visitor extends XMLParserBaseVisitor<Tag> {
         for (XMLParser.DocumentVariableContext doc :ctx.documentVariable()){
             variablesStorage.addDocument(doc.docVariableName().DOCUMENT_WORD().getText(), new DefaultDocument(doc.docVariableValue().DOCUMENT_WORD().getText()));
         }
+
         for (XMLParser.TagVariableContext tag : ctx.tagVariable()){
             variablesStorage.addTagVariable(tag.tagVariableName().TAG_WORD().getText(), new ComplexTag(tag.tagVariableName().TAG_WORD().getText()));
         }
@@ -139,6 +143,58 @@ public class Visitor extends XMLParserBaseVisitor<Tag> {
             }
         }
         return super.visitElseCondition(ctx);
+    }
+
+    @Override
+    public Tag visitFunctionDeclarationEnd(XMLParser.FunctionDeclarationEndContext ctx) {
+        if (insideFunctionDeclaration){
+            insideFunctionDeclaration=false;
+        }
+        return super.visitFunctionDeclarationEnd(ctx);
+    }
+
+    @Override
+    public Tag visitFunction(XMLParser.FunctionContext ctx) {
+        insideFunctionDeclaration = true;
+        Function function = new Function();
+        List<XMLParser.VariableContext> variableContexts = ctx.insideBlockCode().variable();
+        List<XMLParser.OperatorContext> operatorContexts = ctx.insideBlockCode().operator();
+        for (XMLParser.VariableContext context : variableContexts){
+            if (!context.attrVariable().isEmpty()){
+                function.getVars().addAttribute(context.attrVariable().ATTRIBUTE_WORD().getText(),
+                        new AttributeImpl(
+                                context.attrVariable().attrVariableValue().attrName().ATTRIBUTE_WORD().getText(),
+                                context.attrVariable().attrVariableValue().attrValue().ATTRIBUTE_WORD().getText()));
+                continue;
+            }
+            if (!context.documentVariable().isEmpty()){
+                function.getVars().addDocument(context.documentVariable().docVariableName().DOCUMENT_WORD().getText(), new DefaultDocument(context.documentVariable().docVariableValue().DOCUMENT_WORD().getText()));
+                continue;
+            }
+            if (!context.tagVariable().isEmpty()){
+                function.getVars().addTagVariable(context.tagVariable().tagVariableName().TAG_WORD().getText(),
+                        new ComplexTag(context.tagVariable().tagVariableValue().TAG_WORD().getText()));
+                continue;
+            }
+        }
+        for (XMLParser.OperatorContext operatorContext : operatorContexts){
+            if (!operatorContext.appendOperator().isEmpty()){
+                function.getCommandList().add(new AppendOperator(operatorContext.appendOperator().appendOperatorParentName().APPEND_OPERATOR_WORD().getText(),
+                        operatorContext.appendOperator().appendOperatorChildName().APPEND_OPERATOR_WORD().getText()));
+            }
+        }
+        variablesStorage.addFunction(ctx.FUNC_NAME().getText(), function);
+        return super.visitFunction(ctx);
+    }
+
+    @Override
+    public Tag visitFunctionRun(XMLParser.FunctionRunContext ctx) {
+        Function function = variablesStorage.getFunction(ctx.FUNC_RUN_WORD().getText());
+        if (function == null){
+            throw new UndefinedFunctionException("Function "+ctx.FUNC_RUN_WORD().getText()+" is undefined.");
+        }
+        variablesStorage.applyCommand(variablesStorage.getFunction(ctx.FUNC_RUN_WORD().getText()));
+        return super.visitFunctionRun(ctx);
     }
 
     @Override
@@ -254,7 +310,7 @@ public class Visitor extends XMLParserBaseVisitor<Tag> {
         String child = ctx.appendOperatorChildName().APPEND_OPERATOR_WORD().getText();
         System.out.println("Append operator call. Args: child->"+child+" to parent->"+
                 parent);
-        if (conditionNesting.isEmpty()){
+        if (conditionNesting.isEmpty() & !insideFunctionDeclaration){
             variablesStorage.applyCommand(new AppendOperator(parent, child));
         }
         return super.visitAppendOperator(ctx);

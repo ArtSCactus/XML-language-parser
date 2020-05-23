@@ -148,6 +148,24 @@ public interface XMLParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunction(XMLParser.FunctionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link XMLParser#functionDeclarationEnd}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionDeclarationEnd(XMLParser.FunctionDeclarationEndContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#functionRun}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionRun(XMLParser.FunctionRunContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XMLParser#args}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArgs(XMLParser.ArgsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link XMLParser#conditionOperator}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

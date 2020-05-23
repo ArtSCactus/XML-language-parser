@@ -1,4 +1,4 @@
-package builder;
+package operator;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -23,8 +23,9 @@ public static void main(String[] args) throws ParserConfigurationException, Tran
         Document document = dBuilder.newDocument();
 {
 Element myTagName1135901827 = document.createElement("myTagName");
-{
+myTagName1135901827.setAttribute("attrName" , "attrValue");{
 Element notMyTagName170411846 = document.createElement("notMyTagName");
+notMyTagName170411846.setAttribute("attrName","attrValue");
 myTagName1135901827.appendChild(notMyTagName170411846);
 }
 document.appendChild(myTagName1135901827);

@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 public class Main {
     public static void main (String[] args) throws IOException, ParserConfigurationException, TransformerException {
-        XMLLexer lexer = new XMLLexer(CharStreams.fromFileName("books.xml"));
+        XMLLexer lexer = new XMLLexer(CharStreams.fromFileName("code.xml"));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         XMLParser xmlParser = new XMLParser(tokens);
         ParseTree tree = xmlParser.script();

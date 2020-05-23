@@ -1,0 +1,25 @@
+<XMLScript>
+   <constants>
+      doc mydocname = mydocument;
+      tag tagA = myTagName;
+      tag tagB = notMyTagName;
+      func testAttrAppend{
+      attr tagAttr = attrName:attrValue;
+      append tagAttr:tagA;
+      }
+   </constants>
+   <body>
+      append tagB : tagA;
+      append tagA : mydocname;
+      run testAttrAppend;
+      if (tagA == tagB){
+
+      }else{
+      attr anotherAttr = elseAttrName:attrValue;
+      append anotherAttr:tagB;
+      };
+
+   </body>
+</XMLScript>
+
+
